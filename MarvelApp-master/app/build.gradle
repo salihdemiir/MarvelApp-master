@@ -1,0 +1,99 @@
+import com.mte.marvelapp.Libs
+
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'androidx.navigation.safeargs.kotlin'
+    id 'dagger.hilt.android.plugin'
+    id 'kotlin-parcelize'
+}
+
+android {
+    namespace 'com.mte.marvelapp'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.mte.marvelapp"
+        minSdk 24
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+        kotlinOptions {
+            jvmTarget = "1.8"
+        }
+    }
+
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+    }
+
+
+}
+
+dependencies {
+
+    implementation Libs.AndroidX.core
+    implementation Libs.AndroidX.appCompat
+    implementation Libs.AndroidX.constraintLayout
+
+    implementation Libs.Google.material
+    implementation Libs.Google.gson
+
+    implementation Libs.AndroidX.navigation
+    implementation Libs.AndroidX.navigationUI
+
+    implementation Libs.AndroidX.extensions
+    implementation Libs.AndroidX.runtime
+    implementation Libs.AndroidX.livedata
+    implementation Libs.AndroidX.viewModelLifeCycle
+
+    testImplementation Libs.Test.junit
+    androidTestImplementation Libs.Test.testExt
+    androidTestImplementation Libs.Test.espresso
+
+    implementation Libs.Network.retrofit
+    implementation Libs.Network.gsonConverter
+    implementation Libs.Network.moshiConverter
+    implementation Libs.Network.moshi
+    kapt Libs.Network.codegen
+    implementation Libs.Network.okhttp
+    implementation Libs.Network.interceptor
+    implementation Libs.Network.logger
+
+    implementation Libs.Hilt.android
+    kapt Libs.Hilt.compiler
+
+    implementation Libs.Glide.glide
+    annotationProcessor Libs.Glide.compiler
+
+    implementation Libs.Coil.coil
+    implementation Libs.AndroidX.swipeRefresh
+
+    implementation Libs.Coroutines.coroutines
+    implementation Libs.Coroutines.coroutinesCore
+
+    implementation Libs.AndroidX.dataStore
+    implementation Libs.AndroidX.dataStoreCore
+
+}

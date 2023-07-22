@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="comic"
+            type="com.mte.marvelapp.data.remote.model.comic.Comic" />
+        <variable
+            name="clickListener"
+            type="com.mte.marvelapp.ui.home.adapter.listener.ComicClickListener" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="@dimen/card_image_width"
+        android:layout_height="@dimen/card_image_height"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:strokeWidth="0dp"
+        android:layout_marginEnd="@dimen/card_margin"
+        android:onClick="@{() -> clickListener.onComicClick(comic)}">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/card_image"
+                android:layout_width="@dimen/card_image_width"
+                android:layout_height="@dimen/card_image_height"
+                loadImage="@{comic.thumbnail.path + `/portrait_xlarge` + `.` + comic.thumbnail.extension}"
+                android:scaleType="fitXY"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars"/>
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/cover_image"
+                android:layout_width="@dimen/card_image_width"
+                android:layout_height="115dp"
+                android:src="@drawable/gradient_black"
+                android:scaleType="fitXY"
+                android:alpha="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+
+
+            <TextView
+                android:id="@+id/comic_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="@dimen/card_text_margin"
+                android:fontFamily="@font/font_gilroy_medium"
+                android:text="@{comic.title}"
+                android:textColor="@color/primary_white"
+                android:textSize="@dimen/hero_name_size"
+                android:maxLines="@integer/max_lines"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/card_image"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>
