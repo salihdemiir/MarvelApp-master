@@ -19,6 +19,8 @@ abstract class BaseRepository {
                     else -> NetworkResult.Error(true,throwable.localizedMessage)
                 }
             }
+
+
         }
     }
 }
